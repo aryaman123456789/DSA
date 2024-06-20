@@ -10,6 +10,7 @@ int main(int argc, char* argv[]) {
         exit(EXIT_FAILURE);
     }
     FILE* outfile = fopen(argv[2], "w");
+    
     if (outfile == NULL) {
         exit(EXIT_FAILURE);
     }
