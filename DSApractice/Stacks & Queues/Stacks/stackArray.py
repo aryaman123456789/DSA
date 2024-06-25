@@ -6,7 +6,7 @@ class Stack:
     def pop(self):
         if len(self.stack) == 0:
             return "Stack is empty"
-        return self.stack.pop()
+        return self.stack.pop() #remove and return the last element
     def peek(self):
         if len(self.stack) == 0:
             return "Stack is empty"
