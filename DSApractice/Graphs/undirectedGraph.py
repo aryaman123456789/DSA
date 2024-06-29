@@ -1,7 +1,7 @@
 class Graph:
     def __init__(self, size):
         self.size = size
-        self.adjacency_matrix = [[0] * size for _ in range(size)]
+        self.adjacency_matrix = [[None] * size for _ in range(size)]
         self.vertexData = [''] * size
 
     def addEdge(self, u, v):
@@ -16,7 +16,7 @@ class Graph:
     def printGraph(self):
         print("Adjacency Matrix:")
         for row in self.adjacency_matrix:
-            print(' '.join(map(str, row)))
+            print(' '.join(map(lambda x : str(x) if x is not None else '', row)))
         print("\nVertex Data:")
         for vertex, data in enumerate(self.vertexData):
             print(f"Vertex {vertex}: {data}")
