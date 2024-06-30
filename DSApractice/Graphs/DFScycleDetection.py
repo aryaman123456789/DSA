@@ -23,24 +23,32 @@ class Graph:
 
     def dfs_helper(self, v, visited, parent_vertex):
         visited[v] = True # marks the current vertex as visited by setting it to True in the visited array
+
+        # recStack[v] = True # recursion stack for the current vertex which is used to detect cycles for directed graphs
+
         for i in range(self.size): # iterate over all the vertices in the graph
             if self.adjacency_matrix[v][i] == 1: # if there is an edge between the current vetex v and vertex i
                 if visited[i] == False: # if the vertex i has not been visited yet
                     # recurse on vertex i on the updated visited array and v as the parent vertex
-                    if self.dfs_helper(i, visited, v): 
+                    if self.dfs_helper(i, visited, v): # for directed graphs, the parent_vertex is recStack
                         return True # if the if statement is True, then a cycle has been found
                 # if vertex i has been visisted and is not the parent vertex, then a back edge has been found, hence a cycle
-                elif parent_vertex != i: 
+                elif parent_vertex != i: # if for directed graphs, then this would check recStack[i] == True
                     return True
+                
+        # if this was for directed graphs, then we set recStack[v] = False
         return False # if no cycle has been found after all iterations, return False
     
     def isCyclic(self):
         visited = [False] * self.size # initialize a visited array to all False to indicate that no vertices have been visited yet
+
+        # recStack = [False] * self.size # if this was for directed graph cycle detection
+
         for i in range(self.size): # iterate over all the vertices in the graph
             if visited[i] == False: # if the current vertex has not been visited yet
                 # recursively call dfs_helper on vertex i on the updated visited array with -1 as the parent vertex
                 # (-1 is used as the parent vertex since the first call to dfs_helper has no parent vertex yet)
-                if self.dfs_helper(i, visited, -1): 
+                if self.dfs_helper(i, visited, -1): # if this was for directed graphs, the parent_vertex is recStack
                     return True
         return False
 
