@@ -22,27 +22,47 @@ class Graph:
             print(f"Vertex {vertex}: {data}")
 
     def dfs_helper(self, v, visited):
-        visited[v] = True
-        print(self.vertexData[v], end = ' ')
+        visited[v] = True # marks the current vertex as visited by setting it to True in the visited array
+        print(self.vertexData[v], end = ' ') # print the data associated with the current vertex
+
+        # for each vertex i
         for i in range(self.size):
-            if self.adjacency_matrix[v][i] == 1 and not visited[i]:
+            # check if there is an edge between the current vertex v and vertex i
+            # additionally, make sure vertex i has not been visited yet
+            if self.adjacency_matrix[v][i] == 1 and visited[i] == False: 
+                # recursively call dfs_helper on vertex i
                 self.dfs_helper(i, visited)
     
     def dfs(self, start_vertex):
-        visited = [False] * self.size
+        # initialize a visited array to all False to indicate that no vertices have been visited yet     
+        visited = [False] * self.size 
+        # the start_vertex parameter is set to its corresponding index in the vertexData 
+        # array to ensure the traversal starts at the correct vertex
         start_vertex = self.vertexData.index(start_vertex)
+        # call dfs_helper on the start_vertex parameter
         self.dfs_helper(start_vertex, visited)
 
     def bfs(self, start_vertex):
+        # initialize a queue (list) with the index of the start_vertex parameter using vertexData.index()
         queue = [self.vertexData.index(start_vertex)]
+        # visited array set to the size of the graph is all False to indicate that no vertices have been visited yet
         visited = [False] * self.size
+        # set the visited array at the index of the start_vertex index parameter to True
         visited[queue[0]] = True
+        # continue iterating until the queue is empty
         while queue:
+            # pop the first element of the queue and set it to currentVertex
             currentVertex = queue.pop(0)
+            # print the data associated with the current vertex
             print(self.vertexData[currentVertex], end = ' ')
+            # for each vertex i
             for i in range(self.size):
-                if self.adjacency_matrix[currentVertex][i] == 1 and not visited[i]:
+                # check if there is an edge between the current vertex and vertex i
+                # additionally, make sure the vertex i has not been visited yet
+                if self.adjacency_matrix[currentVertex][i] == 1 and visited[i] == False:
+                    # add vertex i to the back of the queue
                     queue.append(i)
+                    # set the visited array at the index of vertex i to True to indicate that it has been visited
                     visited[i] = True
 
 g = Graph(7)
