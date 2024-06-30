@@ -7,7 +7,7 @@ class Graph:
     def addEdge(self, u, v):
         if 0 <= u < self.size and 0 <= v < self.size:
             self.adjacency_matrix[u][v] = 1
-            self.adjacency_matrix[v][u] = 1
+            self.adjacency_matrix[v][u] = 1 # if graph was directed, then this line is not needed
     
     def addVertexData(self, vertex, data):
         if 0 <= vertex < self.size:
