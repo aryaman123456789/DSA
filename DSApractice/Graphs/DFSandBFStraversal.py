@@ -27,11 +27,8 @@ class Graph:
 
         # for each vertex i
         for i in range(self.size):
-            # check if there is an edge between the current vertex v and vertex i
-            # additionally, make sure vertex i has not been visited yet
             if self.adjacency_matrix[v][i] == 1 and visited[i] == False: 
-                # recursively call dfs_helper on vertex i
-                self.dfs_helper(i, visited)
+                    self.dfs_helper(i, visited)
     
     def dfs(self, start_vertex):
         # initialize a visited array to all False to indicate that no vertices have been visited yet     
