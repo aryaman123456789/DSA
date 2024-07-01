@@ -13,9 +13,11 @@ class Graph:
         if 0 <= vertex < self.size:
             self.vertex_data[vertex] = data
     
-    def dijkstra(self, start_vertex_data):
+    def dijkstra(self, start_vertex_data, end_vertex_data):
         # set start_vertex to the index of the start_vertex_data parameter
         start_vertex = self.vertex_data.index(start_vertex_data)
+        # set end_vertex to the index of the end_vertex_data parameter
+        end_vertex = self.vertex_data.index(end_vertex_data)
         # initialize the distance array to the size of the graph and set all values to infinity
         distances = [float('inf')] * self.size
         # create a predecessors array to backtract and find the shortest path for each vertex
@@ -38,7 +40,9 @@ class Graph:
                     u = i
 
             # if no unvisited vertex with the minimum distance to the start_vertex is found, then break out of the loop
-            if u is None:
+            if u is None or u == end_vertex:
+                print(f"Breaking out of the loop. Current vertex: {self.vertex_data[u]}")
+                print(f"Distances: {distances}")
                 break
             # mark the vertex u as visited
             visited[u] = True
@@ -51,7 +55,7 @@ class Graph:
                         distances[v] = alt
                         predecessors[v] = u
             
-        return distances, predecessors
+        return distances[end_vertex], self.get_path(predecessors, start_vertex_data, end_vertex_data)
     
     def get_path(self, predecessors, start_vertex, end_vertex):
         path = []
@@ -93,11 +97,7 @@ g.add_edge(1, 2, 2)  # B -> C, weight 2
 g.add_edge(1, 5, 2)  # B -> F, weight 2
 g.add_edge(6, 5, 5)  # G -> F, weight 5
 
-# Dijkstra's algorithm from D to all vertices
-print("Dijkstra's Algorithm starting from vertex D:\n")
-distances, predecessors = g.dijkstra('D')
-for i, d in enumerate(distances):
-    path = g.get_path(predecessors, 'D', g.vertex_data[i])
-    print(f"{path}, Distance: {d}")
+distance, path = g.dijkstra('D', 'F')
+print(f"Path: {path}, Distance: {distance}")
 
 
