@@ -3,6 +3,8 @@
 
 # If two nodes are in the same row and column, the order should be from left to right.
 
+# Time Complexity: O(nlogn), since the BFS traversal itself iterates over all N nodes and sorting the dictionary keys takes logN time
+# Space Complexity: O(n) as we allocated a new dictionary memory and it will eventually store all N nodes in the tree
 class Node:
     def __init__(self, val = 0, left = None, right = None):
         self.val = val
@@ -11,7 +13,7 @@ class Node:
 
 class Solution:
     def verticalOrder(self, root):
-        from collections import defaultdict, deque
+        from collections import deque, defaultdict
         if not root:
             return []
         queue = deque([(root, 0)])
