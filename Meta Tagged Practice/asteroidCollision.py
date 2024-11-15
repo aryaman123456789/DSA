@@ -1,3 +1,5 @@
+# Time: O(N) as the function processes each asteroid once
+# Space: O(N) which is the size of the stack as in the worst case, the stack will hold all asteroids if there are collisions
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []

@@ -4,6 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#Time: O(N) where each node is processed exactly one
+#Space: O(N) which is the ize of the queue, and in worse case, with a perfectly balanced tree, we could have up to N/2 nodes
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         from collections import deque

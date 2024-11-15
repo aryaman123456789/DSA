@@ -10,12 +10,14 @@ class Solution:
         res = []
         node_to_parent = {}
         visited = set()
+
         def map_parent(node, parent):
             if node:
                 node_to_parent[node] = parent
                 map_parent(node.left, node)
                 map_parent(node.right, node)
         map_parent(root, None)
+
         def dfs(node, remaining_dist):
             if not node or node.val in visited:
                 return
@@ -26,5 +28,6 @@ class Solution:
                 dfs(node.left, remaining_dist - 1)
                 dfs(node.right, remaining_dist - 1)
                 dfs(node_to_parent[node], remaining_dist - 1)
+                
         dfs(target, k)
         return res
