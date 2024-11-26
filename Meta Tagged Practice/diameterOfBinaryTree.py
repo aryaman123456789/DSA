@@ -4,6 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# Time: O(N), Space: O(N) where N is the number of nodes in a fully skewed tree
+
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.diameter = 0

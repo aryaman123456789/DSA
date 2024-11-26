@@ -19,4 +19,4 @@ class Solution:
                 queue.append((node.left, distance - 1))
             if node.right:
                 queue.append((node.right, distance + 1))
-        return [dist_to_node[distance] for distance in sorted(dist_to_node.items())]
+        return [dist_to_node[distance] for distance in sorted(dist_to_node.keys())]
